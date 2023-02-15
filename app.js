@@ -20,5 +20,5 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/mobs', mobsRouter);
 app.use('/members', membersRouter);
-
+app.use(cors());
 module.exports = app;
