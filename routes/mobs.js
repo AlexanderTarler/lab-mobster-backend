@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var { v4: uuidv4 } = require('uuid');
-
-let mobs = [];
+var { mobs, members } = require('./db');
 
 /* GET mobs listing. */
 router.get('/', function (req, res, next) {
@@ -12,6 +11,11 @@ router.get('/', function (req, res, next) {
 router.get('/:id', function (req, res) {
   const mob = mobs.find((mob) => mob.mobId == req.params.id);
   res.send(mob);
+});
+
+router.get('/:id/members', function (req, res) {
+  const mobMembers = members.filter((mob) => mob.mobId == req.params.id);
+  res.send(mobMembers);
 });
 
 router.post('/', function (req, res, next) {
